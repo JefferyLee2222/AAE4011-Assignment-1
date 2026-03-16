@@ -72,17 +72,24 @@ Video Link: (https://youtu.be/HiYFep62dq8)
 
 8. Reflection & Critical Analysis (Q3.3 — 8 marks)
 (a) What Did You Learn?
-I gained hands-on experience in System Integration within a robotics context. Specifically, I learned how to handle asynchronous data streams in ROS and solve Version Compatibility issues between modern AI frameworks (Torch 2.2) and legacy environments (Python 3.8).
+Through this assignment, I gained a deep understanding of the ROS Publisher-Subscriber architecture and its role in real-time robotic systems. Specifically, I learned how to bridge raw sensor data (Rosbag) with high-level AI frameworks like YOLOv5 using the cv_bridge library. This process taught me how to manage asynchronous data streams—ensuring that the vision node can subscribe to a specific compressed image topic (/hikcamera/image_2/compressed) and process frames without crashing the system. Additionally, I mastered environment management in WSL, learning to resolve complex dependency conflicts between modern deep learning libraries (Torch/Ultralytics) and legacy Python 3.8 environments.
 
 (b) How Did You Use AI Tools?
-I utilized Gemini as a technical collaborator to debug environment-specific errors.
+I utilized Gemini as a technical collaborator throughout the debugging and implementation phases.
 
-Benefits: It provided immediate solutions for ModuleNotFoundError and correctly identified the need for IMREAD_COLOR over lowercase variants in OpenCV.
+Benefits: The AI was instrumental in identifying obscure syntax errors (e.g., correcting imread_color to the constant IMREAD_COLOR) and providing the necessary export DISPLAY=:0 commands to enable GUI forwarding from WSL to Windows. This significantly accelerated the troubleshooting process.
 
-Limitations: The AI could not initially "see" my local file system; I had to manually use rostopic list to discover that the camera topic was named /hikcamera instead of the standard /camera.
+Limitations: The AI lacked visibility into my local environment. I initially struggled with a "no new messages" error because the AI couldn't know the specific topic names inside my Rosbag. I had to manually use rostopic list to discover the correct data path, proving that AI tools require precise human-provided context to be effective.
 
 (c) How to Improve Accuracy?
-Data Augmentation: Training the model on images with Motion Blur would help the drone maintain detection accuracy during high-speed maneuvers.
+Domain-Specific Fine-Tuning: The current model uses pre-trained COCO weights, which are general-purpose. Fine-tuning the model on a custom dataset of UAV-perspective images (top-down views or lab-specific lighting) would drastically reduce false negatives and improve confidence scores for objects like tripods or drones.
+
+Temporal Consistency (Tracking): Implementing a tracking algorithm like DeepSORT alongside YOLO would improve accuracy by maintaining the identity of an object across frames. This prevents "flickering" where an object is detected in one frame but missed in the next due to a slight change in angle or motion blur.
+
+(d) Real-World Challenges
+Computational Latency: Running YOLOv5 on a CPU-only environment (like this WSL setup) introduces a latency of ~200ms. In a real flight, this delay is dangerous; at a speed of 5 m/s, the drone would travel 1 meter before even "seeing" an obstacle. Deploying this on a real drone requires hardware acceleration (e.g., NVIDIA Jetson GPU) to reach sub-30ms latency.
+
+Environmental Dynamics: Real-world UAS applications face unpredictable lighting and motion blur. A drone’s vibration or rapid yawing can blur the camera input, causing the feature extraction layers of the AI to fail. Unlike a stable Rosbag recorded in a lab, real-time deployment requires robust image stabilization and models trained to handle high-exposure or low-light conditions.
 
 TensorRT Optimization: Converting the model to TensorRT would allow for FP16 quantization, significantly increasing FPS and reducing detection latency.
 
