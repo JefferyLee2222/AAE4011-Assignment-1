@@ -51,12 +51,12 @@ Start ROS Master:
 
 Bash
 roscore
-Play the Rosbag (In a new terminal):
+Play the Rosbag:
 
 Bash
 # Ensure the 918MB file is used
 rosbag play ~/catkin_ws/2026-02-02-17-57-27.bag --clock -l
-Launch Detection Node (In a third terminal):
+Launch Detection Node :
 
 Bash
 export DISPLAY=:0  # Required for WSL UI window
@@ -69,7 +69,7 @@ Input Resolution: 1920 x 1080
 Observation: The system successfully identifies multiple "person" entities and "tripod" equipment within the lab. The average inference time on CPU is approximately 180ms per frame.
 
 7. Video Demonstration (Q3.2 — 5 marks)
-Video Link: [Insert your YouTube Link Here]
+Video Link: (https://youtu.be/HiYFep62dq8)
 
 8. Reflection & Critical Analysis (Q3.3 — 8 marks)
 (a) What Did You Learn?
