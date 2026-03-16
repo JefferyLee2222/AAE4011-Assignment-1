@@ -13,15 +13,15 @@ Reasoning: In Unmanned Aircraft Systems (UAS), computational efficiency is as cr
 
 3. Repository Structure
 Plaintext
-aae4011_assignment1/
-├── CMakeLists.txt             # Build instructions
-├── package.xml                # ROS dependencies
-├── scripts/
-│   └── vision_node.py         # AI Inference & ROS Subscriber node
-├── data/
-│   └── 2026-02-02-17-57-27.bag # 918MB Lab Data
-└── README.md                  # Documentation
-4. Prerequisites
+aae4011_assignment1
+ ├── CMakeLists.txt             # Build instructions
+ ├── package.xml                # ROS dependencies
+ ├── scripts/
+ │   └── vision_node.py         # AI Inference & ROS Subscriber node
+ ├── data/
+ │   └── 2026-02-02-17-57-27.bag # 918MB Lab Data
+ └── README.md                  # Documentation
+5. Prerequisites
 Operating System: Ubuntu 20.04 (WSL2 on Windows 11)
 
 Middleware: ROS Noetic
