@@ -12,8 +12,9 @@ The YOLOv5s (Small) architecture was selected for this task.
 Reasoning: In Unmanned Aircraft Systems (UAS), computational efficiency is as critical as accuracy. YOLOv5s provides a "single-stage" detection approach that offers high inference speeds (16.4 GFLOPs) suitable for onboard computers like the NVIDIA Jetson series. This allows the drone to react to obstacles in real-time during flight.
 
 3. Repository Structure
-Plaintext
-aae4011_assignment1
+
+Plaintext/n
+aae4011_assignment1/n
 CMakeLists.txt
 package.xml
 scripts/
